@@ -2,43 +2,62 @@
 
 ## users テーブル
 
-| Column    | Type    | Options     |
-| --------- | ------- | ----------- |
-| nickname  | string  | null: false |
-| email     | string  | null: false |
-| password  | string  | null: false |
-| name      | string  | null: false |
-| hurigana  | string  | null: false |
-| birthdate | integer | null: false |
+| Column         | Type    | Options     |
+| -------------- | ------- | ----------- |
+| nickname       | string  | null: false |
+| email          | string  | null: false |
+| password       | string  | null: false |
+| last_name      | string  | null: false |
+| first_name     | string  | null: false |
+| last_furigana  | string  | null: false |
+| first_furigana | string  | null: false |
+| birthdate      | date    | null: false |
 
 has_many :items
-has_many :address_book
+has_many :settlements
 
 
 ## items テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| image         | string     | null: false                    |
 | products_name | string     | null: false                    |
 | description   | string     | null: false                    |
+| category      | integer    | null: false                    |
+| status        | integer    | null: false                    |
+| delivery_fee  | integer    | null: false                    |
+| shipping_place | integer    | null: false                    |
+| day_to_ship   | integer    | null: false                    |
 | price         | integer    | null: false                    |
 | user          | references | null: false, foreign_key: true |#外部キー
 
-belongs_to :users
-has_one    :address_book
+belongs_to :user
+has_many :settlements
+has_one_attached :image           #ActiveStorageとのアソシエーション
 
-## address_book テーブル
+## settlements テーブル
+
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- has_one :address_book
+
+## address_books テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| postcode      | integer    | null: false                    |
-| prefecture_id | references | null: false                    |
-| city          | string     | null: false                    |
-| block         | integer    | null: false                    |
+| postcode      | string     | null: false                    |
+| prefecture_id | text       | null: false                    |
+| city          | integer    | null: false                    |
+| block         | string     | null: false                    |
 | building      | string     |                                | #任意
-| mobile        | integer    | null: false                    |
+| mobile        | string     | null: false                    |
 | user          | references | null: false, foreign_key: true | #外部キー
 
-belongs_to :users
-belongs_to :items
+belongs_to :settlement
