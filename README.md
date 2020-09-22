@@ -1,24 +1,63 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column         | Type    | Options     |
+| -------------- | ------- | ----------- |
+| nickname       | string  | null: false |
+| email          | string  | null: false |
+| password       | string  | null: false |
+| last_name      | string  | null: false |
+| first_name     | string  | null: false |
+| last_furigana  | string  | null: false |
+| first_furigana | string  | null: false |
+| birthdate      | date    | null: false |
 
-* Ruby version
+has_many :items
+has_many :settlements
 
-* System dependencies
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column            | Type       | Options                        |
+| -------------     | ---------- | ------------------------------ |
+| products_name     | string     | null: false                    |
+| description       | text       | null: false                    |
+| category_id       | integer    | null: false                    |
+| status_id         | integer    | null: false                    |
+| delivery_fee_id   | integer    | null: false                    |
+| shipping_place_id | integer    | null: false                    |
+| day_to_ship_id    | integer    | null: false                    |
+| price             | integer    | null: false                    |
+| user              | references | null: false, foreign_key: true |#外部キー
 
-* Database initialization
+belongs_to :user
+has_one :settlement
+has_one_attached :image           #ActiveStorageとのアソシエーション
 
-* How to run the test suite
+## settlements テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
-* Deployment instructions
+### Association
 
-* ...
+- belongs_to :user
+- belongs_to :item
+- has_one :address_book
+
+## address_books テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| postcode      | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| block         | string     | null: false                    |
+| building      | string     |                                | #任意
+| mobile        | string     | null: false                    |
+| suttlement    | references | null: false, foreign_key: true | #外部キー
+
+belongs_to :settlement
