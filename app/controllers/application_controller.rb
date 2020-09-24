@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth
   before_action :configure_permitted_parameters, if: :devise_controller?
+  # before_action :authenticate_user!
+
+
+
   private
 
   def basic_auth
@@ -10,6 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
+    #deviseの仕様で受け取れるパラメーターが限定されているのでこちらに記載して受け取れるようにする
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :last_name, :first_name, :last_furigana, :first_furigana, :birthdate])
   end
 end

@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :items
   has_many :settlements
 
-  validates :name, presence: true
+  validates :nickname, presence: true
 end
