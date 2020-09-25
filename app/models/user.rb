@@ -7,14 +7,17 @@ class User < ApplicationRecord
   has_many :items
   has_many :settlements
 
+  PASSWORD_CODE_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i
+  NAME_CODE_REGEX = /\A[ぁ-んァ-ン一-龥]/
+  FURIGANA_CODE_REGEX = /\A[ァ-ヶー－]+\z/
+
   with_options presence: true do
     validates :nickname
-    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i, message: "Password Include both letters and numbers"}
-    validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "Full-width characters"}
-    validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "Full-width characters"}
-    validates :last_furigana, format: { with: /\A[ァ-ヶー－]+\z/, message: "Full-width katakana characters"}
-    validates :first_furigana, format: { with: /\A[ァ-ヶー－]+\z/, message: "Full-width katakana characters"}
+    validates :password, format: { with: PASSWORD_CODE_REGEX, message: 'Password Include both letters and numbers' }
+    validates :last_name, format: { with: NAME_CODE_REGEX, message: 'Full-width characters' }
+    validates :first_name, format: { with: NAME_CODE_REGEX, message: 'Full-width characters' }
+    validates :last_furigana, format: { with: FURIGANA_CODE_REGEX, message: 'Full-width katakana characters' }
+    validates :first_furigana, format: { with: FURIGANA_CODE_REGEX, message: 'Full-width katakana characters' }
     validates :birthdate
   end
-
 end
