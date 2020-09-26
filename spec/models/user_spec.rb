@@ -15,19 +15,19 @@ RSpec.describe User, type: :model do
         expect(@user).to be_valid
       end
       it 'last_nameが全角（漢字・ひらがな・カタカナ）であれば登録できる' do
-        @user.last_name = "あ漢ア"
+        @user.last_name = 'あ漢ア'
         expect(@user).to be_valid
       end
       it 'first_nameが全角（漢字・ひらがな・カタカナ）であれば登録できる' do
-        @user.first_name = "あ漢ア"
+        @user.first_name = 'あ漢ア'
         expect(@user).to be_valid
       end
       it 'last_furiganaが全角カナであれば登録できる' do
-        @user.last_furigana = "アイウエオ"
+        @user.last_furigana = 'アイウエオ'
         expect(@user).to be_valid
       end
       it 'first_furiganaが全角カナであれば登録できる' do
-        @user.first_furigana = "アイウエオ"
+        @user.first_furigana = 'アイウエオ'
         expect(@user).to be_valid
       end
     end
@@ -46,14 +46,14 @@ RSpec.describe User, type: :model do
       it 'emailに＠が含まれていないと登録できない' do
         @user.email = 'email'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it '重複したemailが存在する場合登録できない' do
         @user.save
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
       it 'passwordが空では登録できない' do
         @user.password = ''
