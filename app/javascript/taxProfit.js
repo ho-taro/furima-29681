@@ -6,7 +6,6 @@ function tax (){
     addTaxPrice.innerHTML = `${parseInt(salesFee, 10).toLocaleString()}`;
     const salesProfit = itemPrice.value /10 *9
     const profit = document.getElementById("profit");
-    console.log(`${salesProfit}`)
     profit.innerHTML = `${parseInt(salesProfit, 10).toLocaleString()}`;
   });
 }
