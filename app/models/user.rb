@@ -7,9 +7,9 @@ class User < ApplicationRecord
   has_many :items
   has_many :settlements
 
-  PASSWORD_CODE_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i
-  NAME_CODE_REGEX = /\A[ぁ-んァ-ン一-龥]/
-  FURIGANA_CODE_REGEX = /\A[ァ-ヶー－]+\z/
+  PASSWORD_CODE_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i.freeze
+  NAME_CODE_REGEX = /\A[ぁ-んァ-ン一-龥]/.freeze
+  FURIGANA_CODE_REGEX = /\A[ァ-ヶー－]+\z/.freeze
 
   with_options presence: true do
     validates :nickname
