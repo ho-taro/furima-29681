@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
-  has_many :settlements
+  has_many :orders
 
   PASSWORD_CODE_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i.freeze
   NAME_CODE_REGEX = /\A[ぁ-んァ-ン一-龥]/.freeze

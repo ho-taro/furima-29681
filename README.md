@@ -14,7 +14,7 @@
 | birthdate      | date    | null: false |
 
 has_many :items
-has_many :settlements
+has_many :orders
 
 
 ## items テーブル
@@ -32,10 +32,10 @@ has_many :settlements
 | user              | references | null: false, foreign_key: true |#外部キー
 
 belongs_to :user
-has_one :settlement
+has_one :orders
 has_one_attached :image           #ActiveStorageとのアソシエーション
 
-## settlements テーブル
+## orders テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
@@ -58,6 +58,6 @@ has_one_attached :image           #ActiveStorageとのアソシエーション
 | block         | string     | null: false                    |
 | building      | string     |                                | #任意
 | mobile        | string     | null: false                    |
-| suttlement    | references | null: false, foreign_key: true | #外部キー
+| order         | references | null: false, foreign_key: true | #外部キー
 
-belongs_to :settlement
+belongs_to :orders
