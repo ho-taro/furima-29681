@@ -44,6 +44,16 @@ RSpec.describe OrderAddressBook, type: :model do
       @order_address_book.valid?
       expect(@order_address_book.errors.full_messages).to include("Mobile can't be blank", 'Mobile is invalid')
     end
+    it 'mobileにハイフンが入っていると保存できないこと' do
+      @order_address_book.mobile = '000-1111-2222'
+      @order_address_book.valid?
+      expect(@order_address_book.errors.full_messages).to include('Mobile is invalid')
+    end
+    it 'mobileに12桁以上だと保存できないこと' do
+      @order_address_book.mobile = '123456789012'
+      @order_address_book.valid?
+      expect(@order_address_book.errors.full_messages).to include('Mobile is invalid')
+    end
     it 'user_idが空だと保存できないこと' do
       @order_address_book.user_id = nil
       @order_address_book.valid?

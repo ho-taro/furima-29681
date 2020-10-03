@@ -10,7 +10,7 @@
       <%= image_tag @item.image ,class:"item-box-img" %>
 
       <%# 商品が売れている場合はsold outを表示 %>
-      <% if Order.exists?(item_id: @item.id) %>
+      <% unless @item.order == nil %>
         <div class='sold-out'>
         <span>Sold Out!!</span>
         </div>
@@ -33,7 +33,7 @@
       <%= link_to '削除', "/items/#{@item.id}", method: :delete, class:'item-destroy' %>
     <% else %>
     <%# 商品が売れていない場合はこちらを表示しましょう %>
-      <% unless Order.exists?(item_id: @item.id) %>
+      <% if @item.order == nil %>
         <%= link_to '購入画面に進む', item_orders_path(@item) ,class:"item-red-btn"%>
       <% end %>
     <%# //商品が売れていない場合はこちらを表示しましょう %>

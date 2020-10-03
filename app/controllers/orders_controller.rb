@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    if @item.user == current_user
+    if @item.user == current_user || (@item.order != nil)
       redirect_to root_path
     else
       @order_address_book = OrderAddressBook.new
@@ -11,7 +11,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # binding.pry
     @order_address_book = OrderAddressBook.new(order_address_book_params)
     if @order_address_book.valid?
       pay_item
