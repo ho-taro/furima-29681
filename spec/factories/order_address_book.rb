@@ -9,6 +9,6 @@ FactoryBot.define do
     user_id { '30' }
     item_id { '31' }
     order_id { '22' }
-    token { 'bvsfdbsdfbsebse'}
+    token { 'bvsfdbsdfbsebse' }
   end
 end
