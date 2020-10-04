@@ -18,6 +18,6 @@ class OrderAddressBook
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
-    AddressBook.create!(postcode: postcode, prefecture_id: prefecture_id, city: city, block: block, building: building, mobile: mobile, order_id: order.id)
+    AddressBook.create(postcode: postcode, prefecture_id: prefecture_id, city: city, block: block, building: building, mobile: mobile, order_id: order.id)
   end
 end
