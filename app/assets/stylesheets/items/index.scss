@@ -125,7 +125,8 @@ a {
 /* 画面中央の「会員数日本一位」帯部分*/
 .ad-contents {
   width: 100vw;
-  background-image: image-url('../assets/furima-header02.png');
+  /*background-image: image-url('../assets/furima-header02.png');*/
+  background-image: image-url('furima-header02.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
