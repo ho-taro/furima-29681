@@ -3,7 +3,8 @@
 
 .ad-footer-contents {
   width: 100vw;
-  /*background-image: image-url('../assets/furima-footer.png');*/
+  /*画像が表示されない原因不明のエラー時に以下のコードに書き換える
+  background-image: image-url('../assets/furima-footer.png');*/
   background-image: image-url('furima-footer.png');
   background-size: cover;
   background-repeat: no-repeat;
