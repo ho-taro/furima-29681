@@ -51,5 +51,5 @@ production:
   <<: *default
   database: furima_29681_production
   username: root
-  password: <%= ENV[Stepoglay1] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
